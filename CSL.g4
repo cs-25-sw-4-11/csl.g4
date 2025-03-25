@@ -9,7 +9,7 @@ expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~') expr
     | IDENTIFIER
     ;
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME;
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK;
 SUBJECT  : '\'' ~[\\']+ '\'' ;
 
 DESCRIPTION : '"' ~[\\"]+ '"' ;
