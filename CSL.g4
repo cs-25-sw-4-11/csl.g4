@@ -2,22 +2,21 @@ grammar CSL;
 
 prog: (stat | expr)* ;
 stat: IDENTIFIER '=' expr ';' ;
-expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'| '*') expr
-    | 'Complent' expr
+expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~') expr
+    | 'Complement' expr
     | '(' expr ')'
     | literal
     | IDENTIFIER
     ;
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | RANGE | DATE;
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME;
 SUBJECT  : '\'' ~[\\']+ '\'' ;
 
 DESCRIPTION : '"' ~[\\"]+ '"' ;
 
 DURATION : [0-9]+('sec'|'min'|'h'|'d'|'w'|'mth'|'y') ;
 
-RANGE : ((DAYSOFWEEK | DATE ) (CLOCK |  ) | '?') '~' ((DAYSOFWEEK | DATE ) (CLOCK |  ) | '?')  ;
-CLOCKRANGE : (CLOCK | '?') '~' (CLOCK | '?') ;
+DATETIME : DATE CLOCK ;
 CLOCK : (('0' | '1' | )[0-9]|[2][0-3]) ':' [0-5][0-9] ;
 DATE : DD MM YYYY ;
 DD : [0-2][0-9]|[3][0-1] ;
