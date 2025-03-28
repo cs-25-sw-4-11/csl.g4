@@ -2,26 +2,39 @@ grammar CSL;
 
 prog: (stat | expr)* ;
 stat: IDENTIFIER '=' expr ';' ;
-expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~') expr
+//TODO: RANK THEM
+expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~' | '++') expr
     | 'Complement' expr
     | '(' expr ')'
     | literal
     | IDENTIFIER
     ;
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK;
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | date | datetime | clock | duration;
+//SPLIT INTO STRING
 SUBJECT  : '\'' ~[\\']+ '\'' ;
-
+//SPLIT INTO STRING
 DESCRIPTION : '"' ~[\\"]+ '"' ;
 
-DURATION : [0-9]+('sec'|'min'|'h'|'d'|'w'|'mth'|'y') ;
+duration : INT TIMEUNITS ;
+TIMEUNITS: 'sec'
+    | 'min'
+    | 'h'
+    | 'w'
+    | 'mth'
+    | 'y'
+    ;
 
-DATETIME : DATE CLOCK ;
-CLOCK : (('0' | '1' | )[0-9]|[2][0-3]) ':' [0-5][0-9] ;
-DATE : DD MM YYYY ;
-DD : [0-2][0-9]|[3][0-1] ;
-MM : ('/' '0' [1-9] '/') | ('/' '1' [0-2] '/') ;
-YYYY : [0-9][0-9][0-9][0-9] ;
+datetime : date clock ;
+clock : hour ':' minutes ;
+hour : INT ;
+minutes : INT ;
+date : dd '/' mm '/' yyyy ;
+dd : INT ;
+mm : INT ;
+yyyy : INT ;
+
+INT : [0-9]+;
 
 DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
 
