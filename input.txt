@@ -1,0 +1,31 @@
+WorkWeek =
+	'Work' +
+	09:00~17:00 +
+    Monday +
+    Tuesday
+	Union
+	'Meetings' +
+	12:00~13:00 +
+	"Meeting with HR" +
+	Monday
+	
+	Union
+		'Make Dinner' + 17:00~18:00
+		<<
+		'Relax' + 19:00~22:00  
+		Union 
+		'Sleep' + "ZzZ" + 22:00~07:00
+	+
+	Friday
+    ;
+
+Holiday =
+	'Flight' +
+	19/03/2025 + 04:00-12:00
+	Union
+	'Relax' + (Monday + Tuesday) in Holiday	
+    ;
+
+
+WorkWeek Intersect Complement (Holiday + 18/03/2025 ~ 26/03/2025) Union
+Holiday + 18/03/2025 ~ 26/03/2025

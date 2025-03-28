@@ -1,0 +1,16 @@
+# ANTLR generated files
+*.tokens
+*.interp
+*.java
+*.class
+*.cs
+*.py
+*.js
+*.cpp
+*.hpp
+*.c
+*.h
+*.go
+*.swift
+*.rs
+*.ts
