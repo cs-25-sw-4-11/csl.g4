@@ -16,8 +16,8 @@ expr
     | expr '<' expr                          # BeforeOp
     | expr '>' expr                          # AfterOp
     | expr '*' expr                          # MultiplyOp
-    | expr 'Union' expr                      # UnionOp
     | expr 'Intersect' expr                  # IntersectOp
+    | expr 'Union' expr                      # UnionOp
     | literal                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
     ;
