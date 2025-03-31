@@ -3,18 +3,31 @@ grammar CSL;
 prog: (stat | expr)* ;
 stat: IDENTIFIER '=' expr ';' ;
 //TODO: RANK THEM
-expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~' | '++') expr
-    | 'Complement' expr
-    | '(' expr ')'
-    | literal
-    | IDENTIFIER
+expr
+    : '(' expr ')'                           # ParenExpr
+    | expr '~' expr                          # TildeOp
+    | <assoc=right> 'Complement' expr        # ComplementOp
+    | expr '++' expr                         # DoublePlusOp
+    | expr '+' expr                          # AddOp
+    | expr '-' expr                          # SubtractOp
+    | expr 'in' expr                         # InOp
+    | expr '<<' expr                         # StrictlyBeforeOp
+    | expr '>>' expr                         # StrictlyAfterOp
+    | expr '<' expr                          # BeforeOp
+    | expr '>' expr                          # AfterOp
+    | expr '*' expr                          # MultiplyOp
+    | expr 'Union' expr                      # UnionOp
+    | expr 'Intersect' expr                  # IntersectOp
+    | literal                                # LiteralExpr
+    | IDENTIFIER                             # IdentifierExpr
     ;
 
+
 literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | date | datetime | clock | duration;
-//SPLIT INTO STRING
-SUBJECT  : '\'' ~[\\']+ '\'' ;
-//SPLIT INTO STRING
-DESCRIPTION : '"' ~[\\"]+ '"' ;
+
+SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
+
+DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
 duration : INT TIMEUNITS ;
 TIMEUNITS: 'sec'
