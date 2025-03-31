@@ -49,7 +49,7 @@ yyyy : INT ;
 
 INT : [0-9]+;
 
-DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
+daysofweek : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
 
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
 
