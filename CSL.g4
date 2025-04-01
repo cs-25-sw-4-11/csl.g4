@@ -23,7 +23,7 @@ expr
     ;
 
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | date | datetime | clock | duration;
+literal : daysofweek | SUBJECT | DESCRIPTION | date | datetime | clock | duration;
 
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
