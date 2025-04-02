@@ -18,16 +18,16 @@ expr
     | expr '*' expr                          # MultiplyOp
     | expr 'Intersect' expr                  # IntersectOp
     | expr 'Union' expr                      # UnionOp
-    | literal                                # LiteralExpr
+    | LITERAL                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
     ;
 
 
-literal : daysofweek | SUBJECT | DESCRIPTION | date | datetime | clock | duration;
+LITERAL : daysofweek | subject | description | date | datetime | clock | duration;
 
-SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
+subject  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
-DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
+description : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
 duration : INT TIMEUNITS ;
 TIMEUNITS: 'sec'
