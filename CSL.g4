@@ -2,26 +2,65 @@ grammar CSL;
 
 prog: (stat | expr)* ;
 stat: IDENTIFIER '=' expr ';' ;
-expr: expr ('+'|'-'|'Union'|'Intersect'|'in'|'<<'|'>>'|'<'|'>'|'*'|'~') expr
-    | 'Complement' expr
-    | '(' expr ')'
-    | literal
-    | IDENTIFIER
+//TODO: RANK THEM
+expr
+    : '(' expr ')'                           # ParenExpr
+    | expr THILDE expr                          # TildeOp
+    | <assoc=right> COMPLEMENT expr        # ComplementOp
+    | expr PLUSPLUS expr                         # DoublePlusOp
+    | expr PLUS expr                          # AddOp
+    | expr MINUS expr                          # SubtractOp
+    | expr IN expr                         # InOp
+    | expr SBEFORE expr                         # StrictlyBeforeOp
+    | expr SAFTER expr                         # StrictlyAfterOp
+    | expr BEFORE expr                          # BeforeOp
+    | expr AFTER expr                          # AfterOp
+    | expr MUL expr                          # MultiplyOp
+    | expr INTERSECTION expr                  # IntersectOp
+    | expr UNION expr                      # UnionOp
+    | LITERAL                                # LiteralExpr
+    | IDENTIFIER                             # IdentifierExpr
     ;
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK;
-SUBJECT  : '\'' ~[\\']+ '\'' ;
+THILDE: '~';
+COMPLEMENT: 'Complement' ;
+PLUSPLUS: '++';
+PLUS: '+';
+MINUS: '-';
+IN: 'in';
+SBEFORE: '<<';
+SAFTER: '>>';
+BEFORE: '<';
+AFTER: '>';
+MUL: '*';
+INTERSECTION: 'Intersect';
+UNION: 'Union';
 
-DESCRIPTION : '"' ~[\\"]+ '"' ;
+LITERAL : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK | DURATION ;
 
-DURATION : [0-9]+('sec'|'min'|'h'|'d'|'w'|'mth'|'y') ;
+SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
+
+DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
+
+DURATION : INT TIMEUNITS ;
+TIMEUNITS: 'sec'
+    | 'min'
+    | 'h'
+    | 'w'
+    | 'mth'
+    | 'y'
+    ;
 
 DATETIME : DATE CLOCK ;
-CLOCK : (('0' | '1' | )[0-9]|[2][0-3]) ':' [0-5][0-9] ;
-DATE : DD MM YYYY ;
-DD : [0-2][0-9]|[3][0-1] ;
-MM : ('/' '0' [1-9] '/') | ('/' '1' [0-2] '/') ;
-YYYY : [0-9][0-9][0-9][0-9] ;
+CLOCK : HOUR ':' MINUTES ;
+HOUR : INT ;
+MINUTES : INT ;
+DATE : DD '/' MM '/' YYYY ;
+DD : INT ;
+MM : INT ;
+YYYY : INT ;
+
+INT : [0-9]+;
 
 DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
 
