@@ -5,25 +5,38 @@ stat: IDENTIFIER '=' expr ';' ;
 //TODO: RANK THEM
 expr
     : '(' expr ')'                           # ParenExpr
-    | expr '~' expr                          # TildeOp
-    | <assoc=right> 'Complement' expr        # ComplementOp
-    | expr '++' expr                         # DoublePlusOp
-    | expr '+' expr                          # AddOp
-    | expr '-' expr                          # SubtractOp
-    | expr 'in' expr                         # InOp
-    | expr '<<' expr                         # StrictlyBeforeOp
-    | expr '>>' expr                         # StrictlyAfterOp
-    | expr '<' expr                          # BeforeOp
-    | expr '>' expr                          # AfterOp
-    | expr '*' expr                          # MultiplyOp
-    | expr 'Intersect' expr                  # IntersectOp
-    | expr 'Union' expr                      # UnionOp
-    | LITERAL                                # LiteralExpr
+    | expr THILDE expr                          # TildeOp
+    | <assoc=right> COMPLEMENT expr        # ComplementOp
+    | expr PLUSPLUS expr                         # DoublePlusOp
+    | expr PLUS expr                          # AddOp
+    | expr MINUS expr                          # SubtractOp
+    | expr IN expr                         # InOp
+    | expr SBEFORE expr                         # StrictlyBeforeOp
+    | expr SAFTER expr                         # StrictlyAfterOp
+    | expr BEFORE expr                          # BeforeOp
+    | expr AFTER expr                          # AfterOp
+    | expr MUL expr                          # MultiplyOp
+    | expr INTERSECTION expr                  # IntersectOp
+    | expr UNION expr                      # UnionOp
+    | literal                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
     ;
 
+THILDE: '~';
+COMPLEMENT: 'Complement' ;
+PLUSPLUS: '++';
+PLUS: '+';
+MINUS: '-';
+IN: 'in';
+SBEFORE: '<<';
+SAFTER: '>>';
+BEFORE: '<';
+AFTER: '>';
+MUL: '*';
+INTERSECTION: 'Intersect';
+UNION: 'Union';
 
-LITERAL : daysofweek | subject | description | date | datetime | clock | duration;
+literal : daysofweek | subject | description | date | datetime | clock | duration ;
 
 subject  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
