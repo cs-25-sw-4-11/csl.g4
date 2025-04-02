@@ -16,7 +16,7 @@ permissions:
 
 jobs:
   build:
-
+    name: Parse ANLTR4 Grammar
     runs-on: ubuntu-latest
 
     steps:
