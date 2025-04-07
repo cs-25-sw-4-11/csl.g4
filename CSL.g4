@@ -2,9 +2,10 @@ grammar CSL;
 
 prog: (stat | expr)* ;
 stat: IDENTIFIER '=' expr ';' ;
-//TODO: RANK THEM
+
 expr
     : '(' expr ')'                           # ParenExpr
+    | '[' expr ']'                          # HideExpr
     | expr THILDE expr                          # TildeOp
     | <assoc=right> COMPLEMENT expr        # ComplementOp
     | expr PLUSPLUS expr                         # DoublePlusOp
@@ -15,7 +16,7 @@ expr
     | expr SAFTER expr                         # StrictlyAfterOp
     | expr BEFORE expr                          # BeforeOp
     | expr AFTER expr                          # AfterOp
-    | expr MUL expr                          # MultiplyOp
+    | expr MUL expr                          # RecursiveOp
     | expr INTERSECTION expr                  # IntersectOp
     | expr UNION expr                      # UnionOp
     | LITERAL                                # LiteralExpr
@@ -36,7 +37,7 @@ MUL: '*';
 INTERSECTION: 'Intersect';
 UNION: 'Union';
 
-LITERAL : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK | DURATION ;
+
 
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
@@ -63,6 +64,8 @@ YYYY : INT ;
 INT : [0-9]+;
 
 DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
+
+LITERAL : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK | DURATION ;
 
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
 
