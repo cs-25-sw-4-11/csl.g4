@@ -71,7 +71,6 @@ javac -cp %ANTLR_JAR% *.java
 java -cp ".;%ANTLR_JAR%" org.antlr.v4.gui.TestRig CSL prog -tokens < input.txt
 ```
 Other useful options include:
-- `NAMEOFGRAMMAR` is your grammar name
 - `prog` is the name of the start rule in your grammar
 - `-tokens` will display the tokens recognized by the lexer
 - `-tree` to display the parse tree in text form
