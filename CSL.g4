@@ -16,10 +16,10 @@ expr
     | expr SAFTER expr                         # StrictlyAfterOp
     | expr BEFORE expr                          # BeforeOp
     | expr AFTER expr                          # AfterOp
-    | expr MUL expr                          # RecursiveOp
+    | expr STAR expr                          # RecursiveOp
     | expr INTERSECTION expr                  # IntersectOp
     | expr UNION expr                      # UnionOp
-    | LITERAL                                # LiteralExpr
+    | literal                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
     ;
 
@@ -33,17 +33,18 @@ SBEFORE: '<<';
 SAFTER: '>>';
 BEFORE: '<';
 AFTER: '>';
-MUL: '*';
+STAR: '*';
 INTERSECTION: 'Intersect';
 UNION: 'Union';
 
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
 
 
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
-DURATION : INT TIMEUNITS ;
+duration : INT TIMEUNITS ;
 TIMEUNITS: 'sec'
     | 'min'
     | 'h'
@@ -52,20 +53,19 @@ TIMEUNITS: 'sec'
     | 'y'
     ;
 
-DATETIME : DATE CLOCK ;
-CLOCK : HOUR ':' MINUTES ;
+datetime : DATE clock ;
+clock : HOUR ':' MINUTES ;
 HOUR : INT ;
 MINUTES : INT ;
-DATE : DD '/' MM '/' YYYY ;
-DD : INT ;
-MM : INT ;
-YYYY : INT ;
+DATE : INT '/' INT '/' INT ;
+
+
+DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' ;
+
+
+
 
 INT : [0-9]+;
-
-DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
-
-LITERAL : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK | DURATION ;
 
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
 
