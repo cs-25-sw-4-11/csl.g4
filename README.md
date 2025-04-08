@@ -51,7 +51,7 @@ echo %ANTLR_JAR%
 ### Compile to C\#
 To compile to C# run the following command:
 ```cmd
-java -jar %ANTLR_JAR% NAMEOFGRAMMAR.g4 -Dlanguage=CSharp -visitor -no-listener
+java -jar %ANTLR_JAR% csl.g4 -Dlanguage=CSharp -visitor -no-listener
 ```
 Possible added arguments:
 - `-Dlanguage=LANGUAGE`
