@@ -54,7 +54,8 @@ TIMEUNITS: 'sec'
     ;
 
 datetime : DATE clock ;
-clock : HOUR ':' MINUTES ;
+clock : HOUR COLON MINUTES ;
+COLON : ':';
 HOUR : INT ;
 MINUTES : INT ;
 DATE : INT '/' INT '/' INT ;
