@@ -68,7 +68,7 @@ javac -cp %ANTLR_JAR% *.java
 ```
 2. Run the following command with a input.txt file that you want to test
 ```cmd
-java -cp ".;%ANTLR_JAR%" org.antlr.v4.gui.TestRig NAMEOFGRAMMAR prog -tokens < input.txt
+java -cp ".;%ANTLR_JAR%" org.antlr.v4.gui.TestRig CSL prog -tokens < input.txt
 ```
 Other useful options include:
 - `NAMEOFGRAMMAR` is your grammar name
