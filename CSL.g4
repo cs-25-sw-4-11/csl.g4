@@ -1,7 +1,10 @@
 grammar CSL;
 
 prog: (stat | expr)* ;
-stat: IDENTIFIER '=' expr ';' ;
+stat: IDENTIFIER EQUAL expr SEMICOLON ;
+
+EQUAL : '=' ;
+SEMICOLON : ';' ;
 
 expr
     : '(' expr ')'                           # ParenExpr
