@@ -10,7 +10,7 @@ expr
     : '(' expr ')'                           # ParenExpr
     | '[' expr ']'                          # HideExpr
     | expr THILDE expr                          # TildeOp
-    | <assoc=right> COMPLEMENT expr        # ComplementOp
+    | expr COMPLEMENT                      # ComplementOp
     | expr PLUSPLUS expr                         # DoublePlusOp
     | expr PLUS expr                          # AddOp
     | expr MINUS expr                          # SubtractOp
@@ -27,7 +27,7 @@ expr
     ;
 
 THILDE: '~';
-COMPLEMENT: 'Complement' ;
+COMPLEMENT: '\'' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
