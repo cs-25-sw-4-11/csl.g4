@@ -19,7 +19,7 @@ expr
     | expr SAFTER expr                         # StrictlyAfterOp
     | expr BEFORE expr                          # BeforeOp
     | expr AFTER expr                          # AfterOp
-    | expr STAR expr                          # RecursiveOp
+    | expr STAR expr                          # RecurOp
     | expr INTERSECTION expr                  # IntersectOp
     | expr UNION expr                      # UnionOp
     | literal                                # LiteralExpr
