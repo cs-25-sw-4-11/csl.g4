@@ -1,10 +1,14 @@
 grammar CSL;
 
 prog: (stat | expr)* ;
-stat: IDENTIFIER '=' expr ';' ;
-//TODO: RANK THEM
+stat: IDENTIFIER EQUAL expr SEMICOLON ;
+
+EQUAL : '=' ;
+SEMICOLON : ';' ;
+
 expr
     : '(' expr ')'                           # ParenExpr
+    | '[' expr ']'                          # HideExpr
     | expr THILDE expr                          # TildeOp
     | <assoc=right> COMPLEMENT expr        # ComplementOp
     | expr PLUSPLUS expr                         # DoublePlusOp
@@ -15,10 +19,10 @@ expr
     | expr SAFTER expr                         # StrictlyAfterOp
     | expr BEFORE expr                          # BeforeOp
     | expr AFTER expr                          # AfterOp
-    | expr MUL expr                          # MultiplyOp
-    | expr INTERSECTION expr                  # IntersectOp
+    | expr STAR expr                          # RecurOp
+    | expr INTERSECTION expr                  # OverlapOp
     | expr UNION expr                      # UnionOp
-    | LITERAL                                # LiteralExpr
+    | literal                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
     ;
 
@@ -32,17 +36,18 @@ SBEFORE: '<<';
 SAFTER: '>>';
 BEFORE: '<';
 AFTER: '>';
-MUL: '*';
+STAR: '*';
 INTERSECTION: 'Intersect';
 UNION: 'Union';
 
-LITERAL : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | DATETIME | CLOCK | DURATION ;
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
+
 
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
-DURATION : INT TIMEUNITS ;
+duration : INT TIMEUNITS ;
 TIMEUNITS: 'sec'
     | 'min'
     | 'h'
@@ -51,19 +56,17 @@ TIMEUNITS: 'sec'
     | 'y'
     ;
 
-DATETIME : DATE CLOCK ;
-CLOCK : HOUR ':' MINUTES ;
-HOUR : INT ;
-MINUTES : INT ;
-DATE : DD '/' MM '/' YYYY ;
-DD : INT ;
-MM : INT ;
-YYYY : INT ;
+datetime : DATE clock ;
+clock : INT COLON INT ;
+COLON : ':';
+DATE : INT '/' INT '/' INT ;
+
+DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' ;
 
 INT : [0-9]+;
 
-DAYSOFWEEK : ('Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday') ;
-
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
 
+LINE_COMMENT : '//' ~[\r\n]* -> skip ;
+BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
 WS : [ \t\r\n]+ -> skip ;
