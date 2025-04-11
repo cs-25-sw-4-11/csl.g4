@@ -20,7 +20,7 @@ expr
     | expr BEFORE expr                          # BeforeOp
     | expr AFTER expr                          # AfterOp
     | expr STAR expr                          # RecurOp
-    | expr INTERSECTION expr                  # IntersectOp
+    | expr INTERSECTION expr                  # OverlapOp
     | expr UNION expr                      # UnionOp
     | literal                                # LiteralExpr
     | IDENTIFIER                             # IdentifierExpr
