@@ -17,7 +17,7 @@ WorkWeek =
 		'Sleep' ++ "ZzZ" ++ 22:00~07:00
 	++
 	Friday
-    ;
+;
 
 Holiday =
 	'Flight' ++
