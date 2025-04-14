@@ -7,23 +7,23 @@ EQUAL : '=' ;
 SEMICOLON : ';' ;
 
 expr
-    : '(' expr ')'                           # ParenExpr
+    : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
-    | expr THILDE expr                          # TildeOp
-    | expr COMPLEMENT                      # ComplementOp
-    | expr PLUSPLUS expr                         # DoublePlusOp
-    | expr PLUS expr                          # AddOp
-    | expr MINUS expr                          # SubtractOp
-    | expr IN expr                         # InOp
-    | expr SBEFORE expr                         # StrictlyBeforeOp
-    | expr SAFTER expr                         # StrictlyAfterOp
-    | expr BEFORE expr                          # BeforeOp
-    | expr AFTER expr                          # AfterOp
-    | expr STAR expr                          # RecurOp
-    | expr INTERSECTION expr                  # OverlapOp
-    | expr UNION expr                      # UnionOp
-    | literal                                # LiteralExpr
-    | IDENTIFIER                             # IdentifierExpr
+    | expr THILDE expr                      # TildeOp
+    | expr COMPLEMENT                       # ComplementOp
+    | expr PLUSPLUS expr                    # DoublePlusOp
+    | expr PLUS expr                        # AddOp
+    | expr MINUS expr                       # SubtractOp
+    | expr IN expr                          # InOp
+    | expr SBEFORE expr                     # StrictlyBeforeOp
+    | expr SAFTER expr                      # StrictlyAfterOp
+    | expr BEFORE expr                      # BeforeOp
+    | expr AFTER expr                       # AfterOp
+    | expr STAR expr                        # RecursiveOp
+    | expr INTERSECTION expr                # IntersectOp
+    | expr UNION expr                       # UnionOp
+    | literal                               # LiteralExpr
+    | IDENTIFIER                            # IdentifierExpr
     ;
 
 THILDE: '~';
