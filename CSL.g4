@@ -37,8 +37,8 @@ SAFTER: '>>';
 BEFORE: '<';
 AFTER: '>';
 STAR: '*';
-INTERSECTION: 'Intersect';
-UNION: 'Union';
+INTERSECTION: '&&';
+UNION: '||';
 
 literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
 
