@@ -10,7 +10,7 @@ expr
     : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
     | expr THILDE expr                      # TildeOp
-    | expr COMPLEMENT                       # ComplementOp
+    | <assoc=right> COMPLEMENT expr         # ComplementOp
     | expr PLUSPLUS expr                    # DoublePlusOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
@@ -27,7 +27,7 @@ expr
     ;
 
 THILDE: '~';
-COMPLEMENT: '\'' ;
+COMPLEMENT: '!' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
@@ -65,7 +65,7 @@ DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sund
 
 INT : [0-9]+;
 
-IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
+IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]* ;
 
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
