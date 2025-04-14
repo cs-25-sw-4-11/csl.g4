@@ -1,4 +1,4 @@
-/*
+
 WorkWeek =
 	'Work' ++
 	09:00~17:00 ++
@@ -28,7 +28,7 @@ Holiday =
     ;
 
 
-WorkWeek Intersect (Holiday ++ 18/03/2025~26/03/2025)' Union
+WorkWeek Intersect !(Holiday ++ 18/03/2025~26/03/2025) Union
 Holiday ++ 18/03/2025 ~ 26/03/2025
-*/
-A' ++ A'
+
+!A ++ !A
