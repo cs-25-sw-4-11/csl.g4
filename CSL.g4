@@ -7,27 +7,27 @@ EQUAL : '=' ;
 SEMICOLON : ';' ;
 
 expr
-    : '(' expr ')'                           # ParenExpr
+    : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
-    | expr THILDE expr                          # TildeOp
-    | <assoc=right> COMPLEMENT expr        # ComplementOp
-    | expr PLUSPLUS expr                         # DoublePlusOp
-    | expr PLUS expr                          # AddOp
-    | expr MINUS expr                          # SubtractOp
-    | expr IN expr                         # InOp
-    | expr SBEFORE expr                         # StrictlyBeforeOp
-    | expr SAFTER expr                         # StrictlyAfterOp
-    | expr BEFORE expr                          # BeforeOp
-    | expr AFTER expr                          # AfterOp
-    | expr STAR expr                          # RecurOp
-    | expr INTERSECTION expr                  # OverlapOp
-    | expr UNION expr                      # UnionOp
-    | literal                                # LiteralExpr
-    | IDENTIFIER                             # IdentifierExpr
+    | expr THILDE expr                      # TildeOp
+    | <assoc=right> COMPLEMENT expr         # ComplementOp
+    | expr PLUSPLUS expr                    # DoublePlusOp
+    | expr PLUS expr                        # AddOp
+    | expr MINUS expr                       # SubtractOp
+    | expr IN expr                          # InOp
+    | expr SBEFORE expr                     # StrictlyBeforeOp
+    | expr SAFTER expr                      # StrictlyAfterOp
+    | expr BEFORE expr                      # BeforeOp
+    | expr AFTER expr                       # AfterOp
+    | expr STAR expr                        # RecursiveOp
+    | expr INTERSECTION expr                # IntersectOp
+    | expr UNION expr                       # UnionOp
+    | literal                               # LiteralExpr
+    | IDENTIFIER                            # IdentifierExpr
     ;
 
 THILDE: '~';
-COMPLEMENT: 'Complement' ;
+COMPLEMENT: '!' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
@@ -37,8 +37,8 @@ SAFTER: '>>';
 BEFORE: '<';
 AFTER: '>';
 STAR: '*';
-INTERSECTION: 'Intersect';
-UNION: 'Union';
+INTERSECTION: '&&';
+UNION: '||';
 
 literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
 
@@ -65,7 +65,7 @@ DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sund
 
 INT : [0-9]+;
 
-IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]+ ;
+IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]* ;
 
 LINE_COMMENT : '//' ~[\r\n]* -> skip ;
 BLOCK_COMMENT : '/*' .*? '*/' -> skip ;
