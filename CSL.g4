@@ -40,7 +40,7 @@ STAR: '*';
 INTERSECTION: '&&';
 UNION: '||';
 
-literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
+literal : SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
 
 
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
