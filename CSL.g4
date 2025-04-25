@@ -60,8 +60,6 @@ clock : INT COLON INT ;
 COLON : ':';
 DATE : INT '/' INT '/' INT ;
 
-DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' ;
-
 INT : [0-9]+;
 
 IDENTIFIER : [a-zA-Z_][a-zA-Z0-9_]* ;
