@@ -48,8 +48,7 @@ SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every ch
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
 duration : INT TIMEUNITS ;
-TIMEUNITS: 'sec'
-    | 'min'
+TIMEUNITS: 'min'
     | 'h'
     | 'w'
     | 'mth'
