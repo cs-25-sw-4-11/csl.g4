@@ -14,11 +14,8 @@ expr
     | expr PLUSPLUS expr                    # DoublePlusOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
-    | expr IN expr                          # InOp
     | expr SBEFORE expr                     # StrictlyBeforeOp
     | expr SAFTER expr                      # StrictlyAfterOp
-    | expr BEFORE expr                      # BeforeOp
-    | expr AFTER expr                       # AfterOp
     | expr STAR expr                        # RecursiveOp
     | expr INTERSECTION expr                # IntersectOp
     | expr UNION expr                       # UnionOp
@@ -31,11 +28,8 @@ COMPLEMENT: '!' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
-IN: 'in';
 SBEFORE: '<<';
 SAFTER: '>>';
-BEFORE: '<';
-AFTER: '>';
 STAR: '*';
 INTERSECTION: '&&';
 UNION: '||';
