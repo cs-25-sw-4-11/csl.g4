@@ -22,9 +22,7 @@ WorkWeek =
 
 Holiday =
 	'Flight' ++
-	19/03/2025 ++ 04:00~12:00
-	||
-	'Relax' ++ (Monday ++ Tuesday) in Holiday	
+	19/03/2025 ++ 04:00~12:00 ++ "Relax"
     ;
 
 
