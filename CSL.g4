@@ -44,6 +44,7 @@ DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every c
 duration : INT TIMEUNITS ;
 TIMEUNITS: 'min'
     | 'h'
+    | 'd'
     | 'w'
     | 'mth'
     | 'y'
