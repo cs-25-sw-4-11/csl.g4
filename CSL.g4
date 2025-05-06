@@ -34,11 +34,12 @@ STAR: '*';
 INTERSECTION: '&&';
 UNION: '||';
 
-literal : SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
+literal : subject | description | date | clock | duration ;
 
-
+subject : SUBJECT ;
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
+description : DESCRIPTION ;
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
 duration : INT TIMEUNITS ;
@@ -50,9 +51,10 @@ TIMEUNITS: 'min'
     | 'y'
     ;
 
-datetime : DATE clock ;
 clock : INT COLON INT ;
 COLON : ':';
+
+date : DATE ;
 DATE : INT '/' INT '/' INT ;
 
 INT : [0-9]+;
