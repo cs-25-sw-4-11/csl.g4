@@ -15,7 +15,7 @@ expr
     | expr MINUS expr                       # SubtractOp
     | expr SBEFORE expr                     # StrictlyBeforeOp
     | expr SAFTER expr                      # StrictlyAfterOp
-    | expr STAR expr                        # RecursiveOp
+    | expr STAR expr                        # RecurrenceOp
     | expr SPLIT expr                       # SplitOp
     | expr SETDIFF expr                     # SetdiffOp
     | expr INTERSECTION expr                # IntersectOp
