@@ -10,13 +10,14 @@ expr
     : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
     | expr THILDE expr                      # TildeOp
-    | <assoc=right> COMPLEMENT expr         # ComplementOp
     | expr PLUSPLUS expr                    # DoublePlusOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
     | expr SBEFORE expr                     # StrictlyBeforeOp
     | expr SAFTER expr                      # StrictlyAfterOp
     | expr STAR expr                        # RecursiveOp
+    | expr SPLIT expr                       # SplitOp
+    | expr SETDIFF expr                     # SetdiffOp
     | expr INTERSECTION expr                # IntersectOp
     | expr UNION expr                       # UnionOp
     | literal                               # LiteralExpr
@@ -24,7 +25,6 @@ expr
     ;
 
 THILDE: '~';
-COMPLEMENT: '!' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
@@ -33,6 +33,8 @@ SAFTER: '>>';
 STAR: '*';
 INTERSECTION: '&&';
 UNION: '||';
+SETDIFF: '\\';
+SPLIT : '/' ;
 
 literal : subject | description | date | clock | duration ;
 
