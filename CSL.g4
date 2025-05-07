@@ -10,13 +10,17 @@ expr
     : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
     | expr THILDE expr                      # TildeOp
-    | <assoc=right> COMPLEMENT expr         # ComplementOp
     | expr PLUSPLUS expr                    # DoublePlusOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
+    | expr IN expr                          # InOp
     | expr SBEFORE expr                     # StrictlyBeforeOp
     | expr SAFTER expr                      # StrictlyAfterOp
+    | expr BEFORE expr                      # BeforeOp
+    | expr AFTER expr                       # AfterOp
     | expr STAR expr                        # RecursiveOp
+    | expr SPLIT expr                       # SlitOp
+    | expr SETDIFF expr                     # SetDiffOp
     | expr INTERSECTION expr                # IntersectOp
     | expr UNION expr                       # UnionOp
     | literal                               # LiteralExpr
@@ -28,34 +32,39 @@ COMPLEMENT: '!' ;
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
+IN: 'in';
 SBEFORE: '<<';
 SAFTER: '>>';
+BEFORE: '<';
+AFTER: '>';
 STAR: '*';
 INTERSECTION: '&&';
 UNION: '||';
+SPLIT: '/';
+SETDIFF: '\\';
 
-literal : subject | description | date | clock | duration ;
+literal : DAYSOFWEEK | SUBJECT | DESCRIPTION | DATE | datetime | clock | duration ;
 
-subject : SUBJECT ;
+
 SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
 
-description : DESCRIPTION ;
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "
 
 duration : INT TIMEUNITS ;
-TIMEUNITS: 'min'
+TIMEUNITS: 'sec'
+    | 'min'
     | 'h'
-    | 'd'
     | 'w'
     | 'mth'
     | 'y'
     ;
 
+datetime : DATE clock ;
 clock : INT COLON INT ;
 COLON : ':';
-
-date : DATE ;
 DATE : INT '/' INT '/' INT ;
+
+DAYSOFWEEK : 'Monday'|'Tuesday'|'Wednesday'|'Thursday'|'Friday'|'Saturday'|'Sunday' ;
 
 INT : [0-9]+;
 
