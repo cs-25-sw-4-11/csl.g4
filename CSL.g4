@@ -9,7 +9,7 @@ SEMICOLON : ';' ;
 expr
     : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
-    | expr THILDE expr                      # TildeOp
+    | expr TILDE expr                      # TildeOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
     | expr PLUSPLUS expr                    # DoublePlusOp
@@ -23,7 +23,7 @@ expr
     | IDENTIFIER                            # IdentifierExpr
     ;
 
-THILDE: '~';
+TILDE: '~';
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
