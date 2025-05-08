@@ -30,7 +30,6 @@ MINUS: '-';
 SBEFORE: '<<';
 SAFTER: '>>';
 STAR: '*';
-INTERSECTION: '&&';
 UNION: '||';
 SETDIFF: '\\';
 SPLIT : '/' ;
