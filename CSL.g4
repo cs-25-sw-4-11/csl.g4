@@ -9,29 +9,27 @@ SEMICOLON : ';' ;
 expr
     : '(' expr ')'                          # ParenExpr
     | '[' expr ']'                          # HideExpr
-    | expr THILDE expr                      # TildeOp
-    | expr PLUSPLUS expr                    # DoublePlusOp
+    | expr TILDE expr                      # TildeOp
     | expr PLUS expr                        # AddOp
     | expr MINUS expr                       # SubtractOp
+    | expr PLUSPLUS expr                    # DoublePlusOp
     | expr SBEFORE expr                     # StrictlyBeforeOp
     | expr SAFTER expr                      # StrictlyAfterOp
     | expr STAR expr                        # RecurrenceOp
     | expr SPLIT expr                       # SplitOp
     | expr SETDIFF expr                     # SetdiffOp
-    | expr INTERSECTION expr                # IntersectOp
     | expr UNION expr                       # UnionOp
     | literal                               # LiteralExpr
     | IDENTIFIER                            # IdentifierExpr
     ;
 
-THILDE: '~';
+TILDE: '~';
 PLUSPLUS: '++';
 PLUS: '+';
 MINUS: '-';
 SBEFORE: '<<';
 SAFTER: '>>';
 STAR: '*';
-INTERSECTION: '&&';
 UNION: '||';
 SETDIFF: '\\';
 SPLIT : '/' ;
