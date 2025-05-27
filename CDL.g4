@@ -34,10 +34,17 @@ UNION: '||';
 SETDIFF: '\\';
 SPLIT : '/' ;
 
-literal : subject | description | date | clock | duration ;
+literal
+    : subject
+    | description
+    | date
+    | clock
+    | duration
+    ;
 
+// start and ends with ' and can contain every char except \ and '
 subject : SUBJECT ;
-SUBJECT  : '\'' ~[\\']+ '\'' ; // start and ends with ' and can contain every char except \ and '
+SUBJECT  : '\'' ~[\\']+ '\'' ;
 
 description : DESCRIPTION ;
 DESCRIPTION : '"' ~[\\"]+ '"' ; // start and ends with " and can contain every char except \ and "

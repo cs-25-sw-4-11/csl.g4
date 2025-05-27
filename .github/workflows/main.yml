@@ -26,4 +26,4 @@ jobs:
         uses: StoneMoe/setup-antlr4@v4.13.2
 
       - name: Run ANTLR4 on grammar
-        run: antlr4 CSL.g4
+        run: antlr4 CDL.g4
