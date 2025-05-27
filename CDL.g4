@@ -1,4 +1,4 @@
-grammar CSL;
+grammar CDL;
 
 prog: (stat | expr)* ;
 stat: IDENTIFIER EQUAL expr SEMICOLON ;
